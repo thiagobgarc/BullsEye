@@ -41,20 +41,40 @@ struct RoundedImageViewFilled: View {
     }
 }
 
-struct PreviewView: View {
+struct RoundRectTextView: View {
+    
+    var systemName: String
+    
     var body: some View {
-        VStack {
-            RoundedImageViewStroked(systemName: "arrow.counterclockwise")
-            RoundedImageViewFilled(systemName: "list.dash")
+        Text(systemName)
+            .kerning(-0.2)
+            .bold()
+            .font(.title3)
+            .frame(width: 68, height:56)
+            .foregroundColor(Color("TextColor"))
+            .overlay(
+                RoundedRectangle(cornerRadius: 21)
+                    .stroke(lineWidth: 2.0)
+                    .foregroundColor(Color("ButtonStrokeColor"))
+            )
+    }
+    
+    struct PreviewView: View {
+        var body: some View {
+            VStack {
+                RoundedImageViewStroked(systemName: "arrow.counterclockwise")
+                RoundedImageViewFilled(systemName: "list.dash")
+                RoundRectTextView(systemName: "100")
             }
         }
-}
-
-struct RoundedViews_Previews: PreviewProvider {
-    static var previews: some View {
-        RoundedImageViewStroked(systemName: "arrow.counterclockwise")
-        PreviewView()
-        PreviewView()
-            .preferredColorScheme(.dark)
+    }
+    
+    struct RoundedViews_Previews: PreviewProvider {
+        static var previews: some View {
+            RoundedImageViewStroked(systemName: "arrow.counterclockwise")
+            PreviewView()
+            PreviewView()
+                .preferredColorScheme(.dark)
+        }
     }
 }
