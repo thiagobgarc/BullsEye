@@ -5,3 +5,4 @@
 <li>User is set to attempt to find the exact number shown to them by the application</li>
 <li>If user can find it then they will be given points</li>
 <li>Other functionality added to better the user experience, such as navigation button</li>
+<li> User will be able to track the rounds and score</li>
