@@ -63,7 +63,6 @@ struct HitMeButton: View {
     
     var body: some View {
         Button(action: {
-            print("Hello, SwiftUI!")
             alertIsVisible = true
         }) {
             Text("Hit Me".uppercased())
@@ -87,8 +86,11 @@ struct HitMeButton: View {
             isPresented: $alertIsVisible,
             content: {
                 let roundedValue: Int = Int(sliderValue)
+                let points = game.points(sliderValue: roundedValue)
                 return Alert(title: Text("Hello there!"),
-                             message: Text("The slider's value is \(roundedValue).\n" + "You scored \(game.points(sliderValue: roundedValue)) points this round."), dismissButton: .default(Text("Awesome!")))
+                             message: Text("The slider's value is \(roundedValue).\n" + "You scored \(points) points this round."), dismissButton: .default(Text("Awesome!")) {
+                    game.startNEwRound(points: points)
+                })
             })
         .padding()
     }
